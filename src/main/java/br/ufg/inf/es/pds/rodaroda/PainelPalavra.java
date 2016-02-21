@@ -2,11 +2,13 @@ package br.ufg.inf.es.pds.rodaroda;
 
 import java.util.Observable;
 
+import br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados.TipoResposta;
+
 public class PainelPalavra extends Observable {
 
 	private String palavraDigitada;
 	private char letraDigitada;
-	private String tipo;
+	private Integer tipo;
 
 	public String getPalavraDigitada() {
 		return palavraDigitada;
@@ -14,6 +16,7 @@ public class PainelPalavra extends Observable {
 
 	public void setPalavraDigitada(String palavraDigitada) {
 		this.palavraDigitada = palavraDigitada;
+		tipo = TipoResposta.PALAVRA.getTipo();
 
 		setChanged();
 		notifyObservers();
@@ -25,12 +28,13 @@ public class PainelPalavra extends Observable {
 
 	public void setLetraDigitada(char letraDigitada) {
 		this.letraDigitada = letraDigitada;
+		tipo = TipoResposta.LETRA.getTipo();
 
 		setChanged();
 		notifyObservers();
 	}
 
-	public String getTipo() {
+	public Integer getTipo() {
 		return tipo;
 	}
 

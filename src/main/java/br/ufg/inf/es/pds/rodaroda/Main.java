@@ -16,16 +16,11 @@ public class Main {
 		System.out.println(Util.internacionaliza("rodaroda.bemVindo"));
 		Scanner scan = new Scanner(System.in);
 		Configuracoes config = new Configuracoes();
-		/*
-		 * config.setQtdeEtapas(1); config.setQtdeJogadores(1); config.setQtdePalavrasEtapa(1);
-		 */
 
 		if (definirConfiguracoes(scan, config)) {
-			// if (config != null) {
 			System.out.println("Configurações definidas");
 			System.out.println("\nINÍCIO");
-			RodaRoda rodaRoda = new RodaRoda(scan, config);
-			rodaRoda.getPalavras();
+			new RodaRoda(scan, config);
 		} else {
 			System.out.println("Configurações não finalizadas.");
 		}
@@ -71,7 +66,9 @@ public class Main {
 				scan.next();
 			}
 
-			if (Util.isMaiorQueZero(configuracao.getQtdeJogadores()) && Util.isMaiorQueZero(configuracao.getQtdePalavrasEtapa()) && Util.isMaiorQueZero(configuracao.getQtdeEtapas())) {
+			if (Util.isMaiorQueZero(configuracao.getQtdeJogadores()) 
+					&& Util.isMaiorQueZero(configuracao.getQtdePalavrasEtapa()) 
+					&& Util.isMaiorQueZero(configuracao.getQtdeEtapas())) {
 				configuracoesPreenchidas = true;
 				faltaDefinirConfiguracao = false;
 			}
@@ -79,5 +76,4 @@ public class Main {
 
 		return configuracoesPreenchidas;
 	}
-
 }

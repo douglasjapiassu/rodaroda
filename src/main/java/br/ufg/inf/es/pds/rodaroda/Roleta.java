@@ -6,21 +6,15 @@ import br.ufg.inf.es.pds.rodaroda.sorteio.ComportamentoSorteio;
 public class Roleta {
 
 	ComportamentoSorteio comportamentoSorteio;
-	private Integer numeroSorteio;
 
-	public Roleta(ComportamentoSorteio comportamentoSorteio, Integer numeroSorteio) {
+	public Roleta(ComportamentoSorteio comportamentoSorteio) {
 		this.comportamentoSorteio = comportamentoSorteio;
-		this.numeroSorteio = numeroSorteio;
 	}
 
-	public OpcoesRoleta sortear() {
+	public OpcoesRoleta sortear(Integer numeroSorteio) {
 		comportamentoSorteio.sorteiaNumeros();
 
-		return comportamentoSorteio.pegarValorSorteadoPorNumeroSorteio(getNumeroSorteio());
-	}
-
-	public Integer getNumeroSorteio() {
-		return numeroSorteio;
+		return comportamentoSorteio.pegarValorSorteadoPorNumeroSorteio(numeroSorteio);
 	}
 
 }

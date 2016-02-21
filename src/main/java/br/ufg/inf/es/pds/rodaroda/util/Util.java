@@ -47,15 +47,37 @@ public class Util {
 		return s.substring(0, pos) + c + s.substring(pos + 1);
 	}
 
-	public static String inicializarPalavraExibida(int length) {
+	public static String inicializarPalavraExibida(String palavraSorteada) {
 		char charToFill = '-';
-		if (length > 0) {
-			char[] array = new char[length];
+		String palavraExibida = "";
 
-			Arrays.fill(array, charToFill);
-			return new String(array);
+		String[] aux = palavraSorteada.split(" ");
+
+		for (String parte : aux) {
+			if (parte.length() > 0) {
+				char[] array = new char[parte.length()];
+
+				Arrays.fill(array, charToFill);
+				if (palavraExibida.length() > 0) {
+					palavraExibida += " ";
+				}
+
+				palavraExibida += new String(array);
+			}
 		}
-		return "";
+
+		return palavraExibida;
+	}
+
+	public static Integer getTamanhoPalavra(String palavraSorteada) {
+		Integer tamanhoPalavra = 0;
+		String[] aux = palavraSorteada.split(" ");
+
+		for (String parte : aux) {
+			tamanhoPalavra += parte.length();
+		}
+
+		return tamanhoPalavra;
 	}
 
 	public static Integer recuperaInteiro(Scanner scan, Integer valorInicial, Integer valorFinal) {
@@ -86,7 +108,7 @@ public class Util {
 		Boolean nok = true;
 
 		do {
-
+			System.out.println(Util.internacionaliza("tipoResposta.digiteUmaLetra"));
 			try {
 				letra = scan.next();
 
@@ -109,16 +131,10 @@ public class Util {
 		Boolean nok = true;
 
 		do {
-
 			try {
 				palavra = scan.next();
-
-				if (palavra.length() == 1) {
-					nok = false;
-				} else {
-					throw new InputMismatchException();
-				}
-			} catch (InputMismatchException e) {
+				nok = false;
+			} catch (Exception e) {
 				System.err.println(Util.internacionaliza("menu.valorInvalido"));
 				scan.nextLine();
 			}

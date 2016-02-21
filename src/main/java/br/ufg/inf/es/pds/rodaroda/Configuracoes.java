@@ -1,10 +1,13 @@
 package br.ufg.inf.es.pds.rodaroda;
 
+import java.util.List;
+
 public class Configuracoes {
 
 	private Integer qtdeJogadores;
 	private Integer qtdePalavrasEtapa;
 	private Integer qtdeEtapas;
+	private List<Jogador> listaJogadores;
 
 	public Configuracoes() {
 
@@ -38,6 +41,14 @@ public class Configuracoes {
 
 	public void setQtdeEtapas(Integer qtdeEtapas) {
 		this.qtdeEtapas = qtdeEtapas;
+	}
+
+	public List<Jogador> getListaJogadores() {
+		return listaJogadores;
+	}
+
+	public void setListaJogadores(List<Jogador> listaJogadores) {
+		this.listaJogadores = listaJogadores;
 	}
 
 }

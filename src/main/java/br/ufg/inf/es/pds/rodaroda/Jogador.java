@@ -7,8 +7,9 @@ public class Jogador {
 	private Integer identificacao;
 	private String nome;
 	private Integer qtdeSorteios;
-	private Integer qtdeErros;
+	private Integer qtdeTentativas;
 	private Integer pontuacao;
+	private Boolean errouPalavra;
 
 	public Integer getIdentificacao() {
 		return identificacao;
@@ -34,12 +35,12 @@ public class Jogador {
 		this.qtdeSorteios = qtdeSorteios;
 	}
 
-	public Integer getQtdeErros() {
-		return Util.nullToZero(qtdeErros);
+	public Integer getQtdeTentativas() {
+		return Util.nullToZero(qtdeTentativas);
 	}
 
-	public void setQtdeErros(Integer qtdeErros) {
-		this.qtdeErros = qtdeErros;
+	public void setQtdeTentativas(Integer qtdeTentativas) {
+		this.qtdeTentativas = qtdeTentativas;
 	}
 
 	public Integer getPontuacao() {
@@ -53,21 +54,29 @@ public class Jogador {
 	public void adicionaPontuacao(Integer pontuacao) {
 		this.pontuacao = Util.nullToZero(this.pontuacao);
 		this.pontuacao += pontuacao;
-		this.imprimePontuacao();
+		imprimePontuacao();
 	}
 
 	public void imprimePontuacao() {
-		System.out.println(Util.internacionaliza("jogador.pontuacao", getPontuacao()));
+		System.out.println(Util.internacionaliza("jogador.pontuacao", getNome(), getPontuacao()));
 	}
 
 	public void incrementaQtdeSorteios() {
-		this.qtdeSorteios = Util.nullToZero(this.qtdeSorteios);
-		this.qtdeSorteios++;
+		qtdeSorteios = Util.nullToZero(qtdeSorteios);
+		qtdeSorteios++;
 	}
 
-	public void incrementaQtdeErros() {
-		this.qtdeErros = Util.nullToZero(this.qtdeErros);
-		this.qtdeErros++;
+	public void incrementaQtdeTentativas() {
+		qtdeTentativas = Util.nullToZero(qtdeTentativas);
+		qtdeTentativas++;
+	}
+
+	public Boolean getErrouPalavra() {
+		return errouPalavra;
+	}
+
+	public void setErrouPalavra(Boolean errouPalavra) {
+		this.errouPalavra = errouPalavra;
 	}
 
 }
