@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
-import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
 
 import br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados.OpcoesRoleta;
 import br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados.SimNao;
 import br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados.Temas;
+import br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados.TipoEstatistica;
 import br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados.TipoResposta;
 import br.ufg.inf.es.pds.rodaroda.sorteio.SorteioAleatorio;
 import br.ufg.inf.es.pds.rodaroda.util.Util;
 import br.ufg.inf.es.pds.rodaroda.util.UtilComparator;
 
-public class RodaRoda implements Observer {
+public class RodaRoda extends Observable {
 
 	private Scanner scan;
 	private Configuracoes configuracoes;
@@ -25,19 +25,18 @@ public class RodaRoda implements Observer {
 	private List<String> palavras;
 	private List<Jogador> listaJogadores;
 	private Roleta roleta;
+	private Estatisticas estatistica;
 
 	String palavraSorteada;
 	String palavraExibida;
-	Observable observavel;
-	char letra;
 	private Integer etapaAtual;
 	private Integer indicePalavra;
 
 	public RodaRoda(Scanner scan, Configuracoes configuracoes) {
 		this.scan = scan;
 		this.configuracoes = configuracoes;
-		observavel = new PainelPalavra();
-		observavel.addObserver(this);
+		estatistica = new Estatisticas();
+		addObserver(estatistica);
 		sortearTema();
 		etapaAtual = 1;
 		setIndicePalavra(1);
@@ -50,6 +49,7 @@ public class RodaRoda implements Observer {
 
 		imprimePlacar();
 		defineVencedor();
+		estatistica.imprimeEstatistica();
 	}
 
 	private void defineListaJogadores() {
@@ -92,7 +92,8 @@ public class RodaRoda implements Observer {
 		Boolean continuaMesmoJogador = true;
 
 		while (continuarExecucao) {
-
+			setChanged();
+			notifyObservers(TipoEstatistica.QTDE_SORTEIOS);
 			if (!continuaMesmoJogador) {
 				indiceJogador++;
 				try {
@@ -134,6 +135,9 @@ public class RodaRoda implements Observer {
 					if (palavraSorteada.equalsIgnoreCase(palavra)) {
 						palavraExibida = palavra;
 						jogadorAtual.adicionaPontuacao(opcaoRoleta.getPontuacao());
+
+						setChanged();
+						notifyObservers(TipoEstatistica.QTDE_ACERTO_PALAVRA);
 					} else {
 						jogadorAtual.setErrouPalavra(true);
 						continuarExecucao = false;
@@ -151,6 +155,8 @@ public class RodaRoda implements Observer {
 					if (ocorrencias.size() > 0) {
 						jogadorAtual.adicionaPontuacao(opcaoRoleta.getPontuacao());
 						continuaMesmoJogador = true;
+						setChanged();
+						notifyObservers(TipoEstatistica.QTDE_ACERTO_LETRA);
 					} else {
 						continuaMesmoJogador = false;
 						imprime(Util.internacionaliza("rodaroda.letraNaoEncontrada", jogadorAtual.getNome()));
@@ -196,17 +202,6 @@ public class RodaRoda implements Observer {
 		palavraSorteada = palavras.get(getIndicePalavra() - 1);
 		palavraExibida = Util.inicializarPalavraExibida(palavraSorteada);
 		imprime(Util.internacionaliza("palavras.quantidadeLetras", Util.getTamanhoPalavra(palavraSorteada)));
-	}
-
-	public void update(Observable observado, Object arg1) {
-		if (observado instanceof PainelPalavra) {
-			PainelPalavra painelPalavra = (PainelPalavra) observado;
-			if (TipoResposta.LETRA.getTipo().equals(painelPalavra.getTipo())) {
-
-			} else {
-
-			}
-		}
 	}
 
 	public Configuracoes getConfiguracoes() {

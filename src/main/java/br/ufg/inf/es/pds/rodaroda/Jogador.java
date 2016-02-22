@@ -1,8 +1,10 @@
 package br.ufg.inf.es.pds.rodaroda;
 
+import java.util.Observable;
+
 import br.ufg.inf.es.pds.rodaroda.util.Util;
 
-public class Jogador {
+public class Jogador extends Observable {
 
 	private Integer identificacao;
 	private String nome;
@@ -55,9 +57,12 @@ public class Jogador {
 		this.pontuacao = Util.nullToZero(this.pontuacao);
 		this.pontuacao += pontuacao;
 		imprimePontuacao();
+
+		setChanged();
+		notifyObservers();
 	}
 
-	public void imprimePontuacao() {
+	private void imprimePontuacao() {
 		System.out.println(Util.internacionaliza("jogador.pontuacao", getNome(), getPontuacao()));
 	}
 

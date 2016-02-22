@@ -2,6 +2,28 @@ package br.ufg.inf.es.pds.rodaroda.enumerados;
 
 public class Enumerados {
 	
+	public enum TipoEstatistica {
+		QTDE_SORTEIOS(1, "estatistica.qtdeSorteios"),
+		QTDE_ACERTO_PALAVRA(2, "estatistica.qtdeAcertoPalavra"),
+		QTDE_ACERTO_LETRA(3, "estatistica.qtdeAcertoLetra");
+
+		private Integer identificador;
+		private String chave;
+
+		private TipoEstatistica(Integer identificador, String chave) {
+			this.identificador = identificador;
+			this.chave = chave;
+		}
+
+		public Integer getIdentificador() {
+			return identificador;
+		}
+
+		public String getChave() {
+			return chave;
+		}
+	}
+
 	public enum SimNao {
 		SIM(1, "comum.sim"),
 		NAO(2, "comum.nao");
