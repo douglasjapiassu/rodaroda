@@ -1,10 +1,14 @@
 package br.ufg.inf.es.pds.rodaroda;
 
-import java.util.Observable;
-
 import br.ufg.inf.es.pds.rodaroda.util.Util;
 
-public class Jogador extends Observable {
+/**
+ * Classe responsável por manter as informações do Jogador.
+ *
+ * @author guilherme.caixeta
+ *
+ */
+public class Jogador {
 
 	private Integer identificacao;
 	private String nome;
@@ -53,24 +57,32 @@ public class Jogador extends Observable {
 		this.pontuacao = pontuacao;
 	}
 
+	/**
+	 * Adiciona a pontuação para o jogador.
+	 *
+	 * @param pontuacao
+	 */
 	public void adicionaPontuacao(Integer pontuacao) {
 		this.pontuacao = Util.nullToZero(this.pontuacao);
 		this.pontuacao += pontuacao;
 		imprimePontuacao();
-
-		setChanged();
-		notifyObservers();
 	}
 
 	private void imprimePontuacao() {
 		System.out.println(Util.internacionaliza("jogador.pontuacao", getNome(), getPontuacao()));
 	}
 
+	/**
+	 * Incrementa a quantidade de sorteios realizados.
+	 */
 	public void incrementaQtdeSorteios() {
 		qtdeSorteios = Util.nullToZero(qtdeSorteios);
 		qtdeSorteios++;
 	}
 
+	/**
+	 * Incrementa a quantidade de tentativas realizadas.
+	 */
 	public void incrementaQtdeTentativas() {
 		qtdeTentativas = Util.nullToZero(qtdeTentativas);
 		qtdeTentativas++;

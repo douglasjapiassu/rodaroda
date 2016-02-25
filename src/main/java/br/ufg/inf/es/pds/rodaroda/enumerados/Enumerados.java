@@ -1,7 +1,22 @@
 package br.ufg.inf.es.pds.rodaroda.enumerados;
 
+/**
+ * Classe responsável por organizar os enums utilizados no RodaRoda.
+ *
+ * @author douglas.japiassu
+ * @author guilherme.caixeta
+ */
 public class Enumerados {
-	
+
+	/**
+	 * <pre>
+	 * Tipo de estatísticas:
+	 * - Quantidade de Sorteios
+	 * - Quantidade de Acertos de Palavras
+	 * - Quantidade de Acertos de Letras
+	 * </pre>
+	 *
+	 */
 	public enum TipoEstatistica {
 		QTDE_SORTEIOS(1, "estatistica.qtdeSorteios"),
 		QTDE_ACERTO_PALAVRA(2, "estatistica.qtdeAcertoPalavra"),
@@ -27,26 +42,34 @@ public class Enumerados {
 	public enum SimNao {
 		SIM(1, "comum.sim"),
 		NAO(2, "comum.nao");
-		
+
 		private Integer identificador;
 		private String chave;
-		
+
 		private SimNao(Integer identificador, String chave) {
 			this.identificador = identificador;
 			this.chave = chave;
 		}
-		
+
 		public Integer getIdentificador() {
 			return identificador;
 		}
-		
+
 		public String getChave() {
 			return chave;
 		}
 	}
 
+	/**
+	 * <pre>
+	 * Tipo de resposta:
+	 * - Letra
+	 * - Palavra
+	 * </pre>
+	 *
+	 */
 	public enum TipoResposta {
-		LETRA(1, "tipoResposta.letra"), 
+		LETRA(1, "tipoResposta.letra"),
 		PALAVRA(2, "tipoResposta.palavra");
 
 		Integer tipo;
@@ -66,6 +89,17 @@ public class Enumerados {
 		}
 	}
 
+	/**
+	 * <pre>
+	 * Opções do Menu:
+	 * - 0 - Escolha opção
+	 * - 1 - Definir quantidade de jogadores
+	 * - 2 - Definir quantidade de palavras por etapa
+	 * - 3 - Definir quantidade de etapas
+	 * - 4 - Sair
+	 * </pre>
+	 *
+	 */
 	public enum OpcoesMenu {
 
 		ESCOLHA_OPCAO(0, "menu.escolhaOpcao"),
@@ -92,6 +126,20 @@ public class Enumerados {
 
 	}
 
+	/**
+	 * Contém os números de opção referentes as opções da roleta, conforme divisão:
+	 * 
+	 * <pre>
+	 * - 2 {@link OpcoesRoleta#PERDE_TUDO}
+	 * - 2 {@link OpcoesRoleta#PASSA_VEZ}
+	 * - 4 {@link OpcoesRoleta#CEM_PONTOS}
+	 * - 4 {@link OpcoesRoleta#DUZENTOS_PONTOS}
+	 * - 4 {@link OpcoesRoleta#QUATROCENTOS_PONTOS}
+	 * - 2 {@link OpcoesRoleta#QUINHENTOS_PONTOS}
+	 * - 2 {@link OpcoesRoleta#MIL_PONTOS}
+	 * </pre>
+	 *
+	 */
 	public enum NumeroOpcao {
 		UM(1, OpcoesRoleta.PERDE_TUDO),
 		DOIS(2, OpcoesRoleta.PERDE_TUDO),
@@ -128,7 +176,7 @@ public class Enumerados {
 					return numeroOpcao.getOpcao();
 				}
 			}
-			
+
 			return null;
 		}
 
@@ -141,6 +189,19 @@ public class Enumerados {
 		}
 	}
 
+	/**
+	 * <pre>
+	 * Opções da roleta:
+	 * - Perde tudo
+	 * - Passa a vez
+	 * - 100 pontos
+	 * - 200 pontos
+	 * - 400 pontos
+	 * - 500 pontos
+	 * - 1000 pontos
+	 * </pre>
+	 *
+	 */
 	public enum OpcoesRoleta {
 
 		PERDE_TUDO(0, 2, "roleta.perdeTudo"),
@@ -175,6 +236,16 @@ public class Enumerados {
 
 	}
 
+	/**
+	 * <pre>
+	 * Temas do jogo:
+	 * - Animais
+	 * - Cidades
+	 * - Filmes
+	 * - Profissões
+	 * </pre>
+	 *
+	 */
 	public enum Temas {
 
 		ANIMAIS(1, "animais", "temas.animais"),

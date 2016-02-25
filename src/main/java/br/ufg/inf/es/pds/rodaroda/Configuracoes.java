@@ -2,6 +2,14 @@ package br.ufg.inf.es.pds.rodaroda;
 
 import java.util.List;
 
+/**
+ *
+ * Classe responsável por manter as informações de configuração do jogo.
+ *
+ * @author douglas.japiassu
+ * @author guilherme.caixeta
+ *
+ */
 public class Configuracoes {
 
 	private Integer qtdeJogadores;
@@ -13,6 +21,13 @@ public class Configuracoes {
 
 	}
 
+	/**
+	 * Construtor padrão
+	 *
+	 * @param qtdeJogadores
+	 * @param qtdePalavrasEtapa
+	 * @param qtdeEtapas
+	 */
 	public Configuracoes(Integer qtdeJogadores, Integer qtdePalavrasEtapa, Integer qtdeEtapas) {
 		this.qtdeJogadores = qtdeJogadores;
 		this.qtdePalavrasEtapa = qtdePalavrasEtapa;

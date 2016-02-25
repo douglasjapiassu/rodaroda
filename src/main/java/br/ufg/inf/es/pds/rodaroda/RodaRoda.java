@@ -16,6 +16,12 @@ import br.ufg.inf.es.pds.rodaroda.sorteio.SorteioAleatorio;
 import br.ufg.inf.es.pds.rodaroda.util.Util;
 import br.ufg.inf.es.pds.rodaroda.util.UtilComparator;
 
+/**
+ * Classe responsável por toda a execução do jogo. As regras estão todas implementadas aqui. Essa classe é observada pelo observer {@link Estatisticas}}.
+ *
+ * @author douglas.japiassu
+ * @author guilherme.caixeta
+ */
 public class RodaRoda extends Observable {
 
 	private Scanner scan;
@@ -32,6 +38,12 @@ public class RodaRoda extends Observable {
 	private Integer etapaAtual;
 	private Integer indicePalavra;
 
+	/**
+	 * Construtor que recebe o scanner e as {@link Configuracoes}}
+	 *
+	 * @param scan
+	 * @param configuracoes
+	 */
 	public RodaRoda(Scanner scan, Configuracoes configuracoes) {
 		this.scan = scan;
 		this.configuracoes = configuracoes;
@@ -52,6 +64,10 @@ public class RodaRoda extends Observable {
 		estatistica.imprimeEstatistica();
 	}
 
+	/**
+	 * Recupera os nomes dos jogadores, a depender da quantidade de jogadores escolhidos ({@link Configuracoes#getQtdeJogadores()}}).
+	 *
+	 */
 	private void defineListaJogadores() {
 		listaJogadores = new ArrayList<Jogador>();
 		for (int numeroJogador = 1; numeroJogador <= configuracoes.getQtdeJogadores(); numeroJogador++) {
@@ -63,10 +79,20 @@ public class RodaRoda extends Observable {
 		}
 	}
 
+	/**
+	 * Imprime uma mensagem com quebra de linha no começo, para melhor visualização.
+	 *
+	 * @param mensagem
+	 */
 	private void imprime(String mensagem) {
 		System.out.println("\n" + mensagem);
 	}
 
+	/**
+	 * Define através da lista de jogadores, qual é o vencedor ordenando a lista pela pontuação.
+	 *
+	 * @see UtilComparator#getComparatorPorPontuacao()
+	 */
 	private void defineVencedor() {
 		Collections.sort(listaJogadores, UtilComparator.getComparatorPorPontuacao());
 
@@ -74,6 +100,9 @@ public class RodaRoda extends Observable {
 		imprime(Util.internacionaliza("rodaroda.vencedor", vencedor.getNome(), vencedor.getPontuacao()));
 	}
 
+	/**
+	 * Imprime o placar do jogo.
+	 */
 	private void imprimePlacar() {
 		for (Jogador jogador : listaJogadores) {
 			imprime(Util.internacionaliza("jogador.numeroJogador", jogador.getIdentificacao()));
@@ -83,6 +112,9 @@ public class RodaRoda extends Observable {
 		}
 	}
 
+	/**
+	 * Interação do jogo.
+	 */
 	private void jogar() {
 		Integer indiceJogador = 0;
 		Jogador jogadorAtual = listaJogadores.get(0);
@@ -186,6 +218,9 @@ public class RodaRoda extends Observable {
 		etapaAtual++;
 	}
 
+	/**
+	 * Realiza o sorteio via {@link Random} do tema do jogo.
+	 */
 	private void sortearTema() {
 		Random rdm = new Random();
 		Integer numeroTema = rdm.nextInt(4) + 1;
@@ -195,6 +230,10 @@ public class RodaRoda extends Observable {
 		palavras = getFileImport().carregaArquivo(tema.getNomeArquivo());
 	}
 
+	/**
+	 * Realiza o sorteio das palavras. Caso seja a primeira palavra a sortear, é feito o "embaralhamento" da lista de palavras, após isso só retira da lista na ordem em que as palavras serão
+	 * sorteadas.
+	 */
 	private void sortearPalavra() {
 		if (getIndicePalavra().equals(1)) {
 			Collections.shuffle(palavras);

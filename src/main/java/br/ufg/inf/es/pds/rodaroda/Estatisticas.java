@@ -3,9 +3,16 @@ package br.ufg.inf.es.pds.rodaroda;
 import java.util.Observable;
 import java.util.Observer;
 
+import br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados;
 import br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados.TipoEstatistica;
 import br.ufg.inf.es.pds.rodaroda.util.Util;
 
+/**
+ * Classe Observer responsável por capturar os eventos da classe Observável RodaRoda
+ *
+ * @see RodaRoda
+ * @author douglas.japiassu
+ */
 public class Estatisticas implements Observer {
 
 	private Integer qtdeSorteios;
@@ -53,6 +60,11 @@ public class Estatisticas implements Observer {
 		return Util.nullToZero(qtdeAcertosLetra);
 	}
 
+	/**
+	 * Imprime as estatísticas do jogo.
+	 *
+	 * @see Enumerados.TipoEstatistica
+	 */
 	public void imprimeEstatistica() {
 		System.out.println("##### ESTATÍSTICAS #####");
 		System.out.println(Util.internacionaliza(TipoEstatistica.QTDE_SORTEIOS.getChave(), getQtdeSorteios()));

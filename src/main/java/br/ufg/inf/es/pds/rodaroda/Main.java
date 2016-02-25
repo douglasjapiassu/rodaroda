@@ -6,6 +6,12 @@ import java.util.Scanner;
 import br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados.OpcoesMenu;
 import br.ufg.inf.es.pds.rodaroda.util.Util;
 
+/**
+ * Classe responsável por obter as interações do usuário.
+ *
+ * @author douglas.japiassu
+ * @author guilherme.caixeta
+ */
 public class Main {
 
 	public static void main(String[] args) throws IOException {
@@ -26,6 +32,11 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Exibe as opções do menu.
+	 *
+	 * @see br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados.OpcoesMenu
+	 */
 	private static void exibeOpcoesMenu() {
 		System.out.println("------------ MENU ------------");
 		for (OpcoesMenu opcao : OpcoesMenu.values()) {
@@ -66,8 +77,8 @@ public class Main {
 				scan.next();
 			}
 
-			if (Util.isMaiorQueZero(configuracao.getQtdeJogadores()) 
-					&& Util.isMaiorQueZero(configuracao.getQtdePalavrasEtapa()) 
+			if (Util.isMaiorQueZero(configuracao.getQtdeJogadores())
+					&& Util.isMaiorQueZero(configuracao.getQtdePalavrasEtapa())
 					&& Util.isMaiorQueZero(configuracao.getQtdeEtapas())) {
 				configuracoesPreenchidas = true;
 				faltaDefinirConfiguracao = false;

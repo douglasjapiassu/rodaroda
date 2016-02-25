@@ -8,10 +8,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados;
 import br.ufg.inf.es.pds.rodaroda.enumerados.Enumerados.Temas;
 
+/**
+ * Classe responsável por importar os arquivos de texto e retornar em forma de Map (todos os arquivos) ou List (um arquivo apenas).
+ *
+ * @author douglas.japiassu
+ */
 public class FileImport {
 
+	/**
+	 * Carrega as listas de temas.
+	 *
+	 * @see Enumerados.Temas
+	 * @return Map contendo os conteúdos dos arquivos
+	 */
 	public Map<Integer, List<String>> carregarListasTemas() {
 		Map<Integer, List<String>> temas = new HashMap<Integer, List<String>>();
 
@@ -21,6 +33,12 @@ public class FileImport {
 		return temas;
 	}
 
+	/**
+	 * Carrega uma lista de acordo com o nome do arquivo passado.
+	 *
+	 * @param nomeArquivo
+	 * @return List contendo os valores do arquivo
+	 */
 	public List<String> carregaArquivo(String nomeArquivo) {
 		List<String> list = new ArrayList<String>();
 		try {
